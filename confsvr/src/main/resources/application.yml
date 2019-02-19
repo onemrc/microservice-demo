@@ -39,4 +39,6 @@ spring:
            native:
               searchLocations: file:///E:/WebProject/microservice-demo/confsvr/src/main/resources/config/licensingservice,
                                file:///E:/WebProject/microservice-demo/confsvr/src/main/resources/config/organizationservice
+           encrypt:
+             enabled: false
 ##              #searchLocations: classpath:config/,classpath:config/licensingservice
