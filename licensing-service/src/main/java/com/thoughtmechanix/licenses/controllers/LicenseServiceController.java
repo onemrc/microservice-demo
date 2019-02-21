@@ -33,22 +33,30 @@ public class LicenseServiceController {
     public License getLicenses( @PathVariable("organizationId") String organizationId,
                                 @PathVariable("licenseId") String licenseId) {
 
-        return licenseService.getLicense(organizationId,licenseId);
+        return licenseService.getLicense(organizationId, licenseId, "");
+    }
+
+    @RequestMapping(value="/{licenseId}/{clientType}",method = RequestMethod.GET)
+    public License getLicensesWithClient( @PathVariable("organizationId") String organizationId,
+                                          @PathVariable("licenseId") String licenseId,
+                                          @PathVariable("clientType") String clientType) {
+
+        return licenseService.getLicense(organizationId,licenseId, clientType);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.PUT)
-    public String updateLicenses( @PathVariable("licenseId") String licenseId) {
-        return String.format("This is the put");
+    public void updateLicenses( @PathVariable("licenseId") String licenseId, @RequestBody License license) {
+        licenseService.updateLicense(license);
     }
 
     @RequestMapping(value="/",method = RequestMethod.POST)
     public void saveLicenses(@RequestBody License license) {
-       licenseService.saveLicense(license);
+        licenseService.saveLicense(license);
     }
 
     @RequestMapping(value="{licenseId}",method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteLicenses( @PathVariable("licenseId") String licenseId) {
-        return String.format("This is the Delete");
+    public void deleteLicenses( @PathVariable("licenseId") String licenseId, @RequestBody License license) {
+         licenseService.deleteLicense(license);
     }
 }
