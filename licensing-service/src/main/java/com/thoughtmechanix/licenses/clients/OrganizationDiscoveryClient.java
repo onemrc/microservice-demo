@@ -20,11 +20,14 @@ public class OrganizationDiscoveryClient {
 
     public Organization getOrganization(String organizationId) {
         RestTemplate restTemplate = new RestTemplate();
+        //获取组织实例中所有实例的列表
         List<ServiceInstance> instances = discoveryClient.getInstances("organizationservice");
 
         if (instances.size()==0) return null;
+        //检索要调用的服务端点
         String serviceUri = String.format("%s/v1/organizations/%s",instances.get(0).getUri().toString(), organizationId);
-    
+
+        //使用标准的Spring REST 模板类去调用服务
         ResponseEntity< Organization > restExchange =
                 restTemplate.exchange(
                         serviceUri,

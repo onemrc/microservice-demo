@@ -7,8 +7,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-import java.util.Collections;
-import java.util.List;
+
 
 @SpringBootApplication
 @EnableDiscoveryClient
