@@ -62,12 +62,12 @@
             <version>8.0.11</version>
         </dependency>
 
-        <!--druid-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.11_preview_9</version>
-        </dependency>
+        <!--&lt;!&ndash;druid&ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>druid</artifactId>-->
+        <!--<version>1.1.11_preview_9</version>-->
+        <!--</dependency>-->
 
         <!--解密用-->
         <dependency>
@@ -84,6 +84,18 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
+
+        <!--断路器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-javanica</artifactId>
+            <version>1.5.9</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
@@ -92,7 +104,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.thoughtmechanix.licenses.Application</start-class>
         <docker.image.name>johncarnell/tmx-licensing-service</docker.image.name>
-        <docker.image.tag>chapter3</docker.image.tag>
+        <docker.image.tag>chapter5</docker.image.tag>
     </properties>
 
     <build>

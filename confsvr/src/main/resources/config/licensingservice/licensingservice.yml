@@ -7,7 +7,7 @@ spring.datasource.url: "jdbc:mysql://127.0.0.1:3306/microservice_demo?useSSL=fal
 spring.datasource.username: "root"
 spring.datasource.password: "{cipher}36e03d81e8066a432c880ad3abdc74d52c7bbefbdc04283921ee8965afefad0e"
 #spring.datasource.testWhileIdle: "true"
-spring.datasource.type: "com.alibaba.druid.pool.DruidDataSource"
+#spring.datasource.type: "com.alibaba.druid.pool.DruidDataSource"
 #spring.datasource.validationQuery: "SELECT 1"
 #spring.jpa.properties.hibernate.dialect: "org.hibernate.dialect.MySQL5Dialect"
 #redis.server: "redis"
