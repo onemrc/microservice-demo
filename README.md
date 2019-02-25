@@ -73,7 +73,8 @@ http://<eureka server>:8761/eureka/apps/<APPID>
 - 服务发现模式用于抽象服务的物理位置
 - Eureka可以在不影响服务客户端的情况下，无缝地向环境中添加和移除服务实例
 - 通过在进行服务调用的客户端中缓存服务的物理位置，客户端负载均衡可以提供额外的性能和弹性
-- 核心3中不同的机制调用服务
+- 核心3种不同的机制调用服务
+
 (1)使用Spring Cloud服务DiscoveryClient
 (2)使用Spring Cloud和支持Ribbon的RestTemplate
 (3)使用Spring Cloud和Netflix的Feign客户端
