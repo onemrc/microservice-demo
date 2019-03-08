@@ -8,7 +8,7 @@
 
 ## 项目笔记
 
-### Sprig Cloud 配置服务器
+### Sprig Cloud 分布式配置
 
 依赖于spring-cloud-starter-config 这个库，在配置服务的application.yml中配置端口以及配置数据的访问路径
 
@@ -32,8 +32,11 @@ Spring Cloud Config支持使用对称加密（共享秘钥）和非对称（公�
 
 ### 服务发现
 - 服务发现模式用于抽象服务的物理位置
+
 - 像Eureka这样的服务发现引擎可以在不影响服务客户端的情况下，无缝地向环境中添加和移除服务实例
+
 - 通过在进行服务调用的客户端中缓存服务的物理位置，客户端负载均衡可以提供额外的性能和弹性
+
 - Eureka是Netflix项目，在与Spring Cloud一起使用时，很容易对Eureka进行建立和配置
 
 
@@ -43,7 +46,9 @@ Spring Eureka依赖于 spring-cloud-starter-eureka-server 这个库
 
 Eureka服务的几个重要配置：
 server.port: 8761       -- 设置Eureka服务的默认端口
+
 eureka.client.registerWithEureka: false     --在Spring Boot Eureka应用程序启动时不要通过Euraka注册，因为它本身就是Eureka服务
+
 eureka.client.fetchRegistry: false      --不要在本地缓存注册表信息
 
 在启动类添加 @EnableEurekaServer 就可以让这个服务成为一个Eureka服务
@@ -54,12 +59,16 @@ eureka.client.fetchRegistry: false      --不要在本地缓存注册表信息
 
 客户端的服务与Eureka通信的几个配置：
 eureka.instance.preferIpAddress: true   -- 首选注册服务的IP，而不是服务器名称
+
 eureka.client.registerWithEureka: true     -- 向Eureka注册服务
+
 eureka.client.fetchRegistry: true           -- 让客户端的服务从本地缓存注册表中获取服务，而不是每次查找服务都调用Eureka服务。每个30秒，客户端就会重新联系Eureka服务，保证本地缓存是实时有效的
+
 eureka.client.uri: http://localhost:8888        -- Eureka服务的地址列表，多个Eureka服务器就用 "," 隔开
 
 
 可以使用Eureka 的 REST API 来查看服务注册表的内容：
+
 http://<eureka server>:8761/eureka/apps/<APPID>
 
 #### 使用服务发现来查找服务
@@ -74,10 +83,11 @@ http://<eureka server>:8761/eureka/apps/<APPID>
 - Eureka可以在不影响服务客户端的情况下，无缝地向环境中添加和移除服务实例
 - 通过在进行服务调用的客户端中缓存服务的物理位置，客户端负载均衡可以提供额外的性能和弹性
 - 核心3种不同的机制调用服务
+    - 使用Spring Cloud服务DiscoveryClient
 
-(1)使用Spring Cloud服务DiscoveryClient
-(2)使用Spring Cloud和支持Ribbon的RestTemplate
-(3)使用Spring Cloud和Netflix的Feign客户端
+    - 使用Spring Cloud和支持Ribbon的RestTemplate
+
+    - 使用Spring Cloud和Netflix的Feign客户端
 
 ### 客户端弹性模式
 
@@ -104,8 +114,11 @@ http://<eureka server>:8761/eureka/apps/<APPID>
 
 #### Hystrix 实现舱壁模式
 使用@HystrixCommand注解的其他属性：
+
 （1）为方法调用建立一个单独线程池
+
 （2）设置线程池中的线程数
+
 （3）设置单个线程繁忙时可排队的请求数的队列大小
 
 #### Hystrix 如何确定断路器何时跳闸？
@@ -124,8 +137,11 @@ Hystrix做的第一件事就是查看10s内发生的调用数量    （如果调
 Hystrix允许开发人员定义一种自定义的并发策略
 
 实现自定义HystrixConcurrentStrategy 步骤：
+
 (1)定义自定义的Hystrix并发策略类
+
 (2)定义一个Callable类，将UserContext注入Hystrix中
+
 (3)配置Spring Cloud以使用自定义Hystrix并发策略
 
 #### 客户端弹性模式小结
@@ -160,7 +176,9 @@ Hystrix允许开发人员定义一种自定义的并发策略
 ##### Zuul过滤器
 
 前置过滤器(HTTP请求到达实际服务之前对HTTP请求进行检查和修改)
+
 后置过滤器(检查响应，可以修改相应和添加额外信息)
+
 路由过滤器(可以为服务客户端添加智能路由)
 
 #### 服务网关小结
